@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catégories de produits - PharmExpress</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#A9D6E5',
+                            DEFAULT: '#2C7DA0',
+                            dark: '#012A4A'
+                        },
+                        secondary: '#61A5C2',
+                        accent: '#468FAF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        '3d': '8px 8px 0px rgba(0, 0, 0, 0.15)',
+                        '3d-hover': '4px 4px 0px rgba(0, 0, 0, 0.15)',
+                        '3d-small': '4px 4px 0px rgba(0, 0, 0, 0.1)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-3d {
+                @apply transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)];
+            }
+            .hover-3d:hover {
+                @apply transform translate-y-[-4px] translate-x-[-4px] shadow-3d-hover;
+            }
+            .card-3d {
+                @apply shadow-3d transition-3d hover-3d;
+            }
+            .btn-3d {
+                @apply shadow-3d-small transition-3d hover-3d active:translate-y-0 active:translate-x-0 active:shadow-none;
+            }
+            .category-card {
+                @apply relative overflow-hidden rounded-xl h-48 flex items-center justify-center;
+            }
+            .category-overlay {
+                @apply absolute inset-0 bg-black bg-opacity-30 transition-opacity duration-300;
+            }
+            .category-card:hover .category-overlay {
+                @apply bg-opacity-40;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-primary-dark text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="card-3d bg-white p-2 rounded-lg">
+                        <img src="images/logoo.png" class="w-10 h-10 object-contain" alt="PharmExpress Logo">
+                    </div>
+                    <h1 class="text-2xl font-bold">Pharm<span class="text-accent">Express</span></h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="font-medium hover:text-accent transition-colors">Accueil</a>
+                    <a href="categorie.html" class="font-medium text-accent transition-colors">Catégories</a>
+                    <a href="produits.html" class="font-medium hover:text-accent transition-colors">Produits</a>
+                    <a href="aprpos.html" class="font-medium hover:text-accent transition-colors">À propos</a>
+                    <a href="#" class="font-medium hover:text-accent transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="p-2 hover:text-accent transition-colors">
+                            <i class="fas fa-bell text-xl"></i>
+                            <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                        </button>
+                    </div>
+                    <button class="p-2 hover:text-accent transition-colors">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                    </button>
+                    <a href="#" class="btn-3d bg-accent text-white px-4 py-2 rounded-lg font-medium">Connexion</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-primary to-primary-dark text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nos catégories de produits</h1>
+            <p class="text-xl text-primary-light max-w-3xl mx-auto">
+                Découvrez notre large gamme de produits de santé classés par catégories pour faciliter votre recherche
+            </p>
+        </div>
+    </section>
+
+    <!-- Categories Grid -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Category 1 -->
+                <a href="#" class="category-card card-3d">
+                    <div class="category-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Médicaments" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-pills text-2xl text-primary-dark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Médicaments</h3>
+                        <p class="text-white text-opacity-90">125 produits</p>
+                    </div>
+                </a>
+                
+                <!-- Category 2 -->
+                <a href="#" class="category-card card-3d">
+                    <div class="category-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Soins du corps" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-pump-soap text-2xl text-primary-dark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Soins du corps</h3>
+                        <p class="text-white text-opacity-90">89 produits</p>
+                    </div>
+                </a>
+                
+                <!-- Category 3 -->
+                <a href="#" class="category-card card-3d">
+                    <div class="category-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Bébé et enfant" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-baby text-2xl text-primary-dark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Bébé et enfant</h3>
+                        <p class="text-white text-opacity-90">67 produits</p>
+                    </div>
+                </a>
+                
+                <!-- Category 4 -->
+                <a href="#" class="category-card card-3d relative block overflow-hidden rounded-xl">
+                    <div class="category-overlay absolute inset-0 bg-black bg-opacity-40 z-0"></div>
+                    <img src="images/vitamaine.jpg" alt="Compléments alimentaires" class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-capsules text-2xl text-primary-dark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Compléments alimentaires</h3>
+                        <p class="text-white text-opacity-90">142 produits</p>
+                    </div>
+                </a>
+                
+                
+                <!-- Category 5 -->
+                <a href="#" class="category-card card-3d">
+                    <div class="category-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Hygiène dentaire" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-tooth text-2xl text-primary-dark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Hygiène dentaire</h3>
+                        <p class="text-white text-opacity-90">54 produits</p>
+                    </div>
+                </a>
+                
+                <!-- Category 6 -->
+                <a href="#" class="category-card card-3d">
+                    <div class="category-overlay"></div>
+                    <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" 
+                         alt="Matériel médical" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="relative z-10 text-center p-6">
+                        <div class="w-16 h-16 bg-white bg-opacity-80 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-medkit text-2xl text-primary-dark"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Matériel médical</h3>
+                        <p class="text-white text-opacity-90">38 produits</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subcategories Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Explorez nos sous-catégories</h2>
+            
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <!-- Subcategory 1 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-head-side-cough"></i>
+                    </div>
+                    <h3 class="font-medium">Toux et rhume</h3>
+                </a>
+                
+                <!-- Subcategory 2 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-pain-relief"></i>
+                    </div>
+                    <h3 class="font-medium">Douleurs</h3>
+                </a>
+                
+                <!-- Subcategory 3 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-allergies"></i>
+                    </div>
+                    <h3 class="font-medium">Allergies</h3>
+                </a>
+                
+                <!-- Subcategory 4 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-stomach"></i>
+                    </div>
+                    <h3 class="font-medium">Digestion</h3>
+                </a>
+                
+                <!-- Subcategory 5 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-sun"></i>
+                    </div>
+                    <h3 class="font-medium">Protection solaire</h3>
+                </a>
+                
+                <!-- Subcategory 6 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="font-medium">Cardiovasculaire</h3>
+                </a>
+                
+                <!-- Subcategory 7 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="font-medium">Soins des yeux</h3>
+                </a>
+                
+                <!-- Subcategory 8 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="font-medium">Stress et sommeil</h3>
+                </a>
+                
+                <!-- Subcategory 9 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3 class="font-medium">Articulations</h3>
+                </a>
+                
+                <!-- Subcategory 10 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-virus"></i>
+                    </div>
+                    <h3 class="font-medium">Immunité</h3>
+                </a>
+                
+                <!-- Subcategory 11 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-weight"></i>
+                    </div>
+                    <h3 class="font-medium">Minceur</h3>
+                </a>
+                
+                <!-- Subcategory 12 -->
+                <a href="#" class="bg-gray-50 rounded-lg p-4 text-center hover:bg-primary-light transition-colors">
+                    <div class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-3">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3 class="font-medium">Bien-être</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Products -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">Produits populaires par catégorie</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden">
+                    <div class="bg-gray-100 h-48 flex items-center justify-center p-4">
+                        <img src="https://via.placeholder.com/200x200?text=Doliprane" alt="Doliprane 1000mg" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-accent">Analgésiques</span>
+                        <h3 class="text-lg font-bold text-gray-900 my-2">Doliprane 1000mg</h3>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary-dark">4.95 €</span>
+                            <button class="btn-3d bg-accent text-white p-2 rounded-lg">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden">
+                    <div class="bg-gray-100 h-48 flex items-center justify-center p-4">
+                        <img src="https://via.placeholder.com/200x200?text=Biafine" alt="Biafine" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-accent">Soins de la peau</span>
+                        <h3 class="text-lg font-bold text-gray-900 my-2">Biafine Act</h3>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary-dark">8.20 €</span>
+                            <button class="btn-3d bg-accent text-white p-2 rounded-lg">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden">
+                    <div class="bg-gray-100 h-48 flex items-center justify-center p-4">
+                        <img src="https://via.placeholder.com/200x200?text=Immodium" alt="Immodium" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-accent">Digestion</span>
+                        <h3 class="text-lg font-bold text-gray-900 my-2">Immodium Lingual</h3>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary-dark">6.75 €</span>
+                            <button class="btn-3d bg-accent text-white p-2 rounded-lg">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden">
+                    <div class="bg-gray-100 h-48 flex items-center justify-center p-4">
+                        <img src="https://via.placeholder.com/200x200?text=Zyrtec" alt="Zyrtec" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <div class="p-4">
+                        <span class="text-xs font-semibold text-accent">Allergies</span>
+                        <h3 class="text-lg font-bold text-gray-900 my-2">Zyrtecset 10mg</h3>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-primary-dark">12.30 €</span>
+                            <button class="btn-3d bg-accent text-white p-2 rounded-lg">
+                                <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="btn-3d inline-block bg-primary-dark text-white px-8 py-3 rounded-lg font-medium">
+                    Voir tous les produits
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">À propos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Qui sommes-nous</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Notre équipe</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Nos pharmacies</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Recrutement</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Livraison</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Click & Collect</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Ordonnance en ligne</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Conseil pharmaceutique</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Help Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Aide</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Nous contacter</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Suivi de commande</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Retours et remboursements</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Légal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Conditions générales</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Politique de confidentialité</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Mentions légales</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Suivez-nous</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-primary-light"></i>
+                            <span>01 23 45 67 89</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary-light"></i>
+                            <span>contact@pharmexpress.fr</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary text-center text-primary-light text-sm">
+                &copy; 2025 PharmExpress. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

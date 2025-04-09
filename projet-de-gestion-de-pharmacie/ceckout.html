@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paiement - PharmExpress</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#A9D6E5',
+                            DEFAULT: '#2C7DA0',
+                            dark: '#012A4A'
+                        },
+                        secondary: '#61A5C2',
+                        accent: '#468FAF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        '3d': '8px 8px 0px rgba(0, 0, 0, 0.15)',
+                        '3d-hover': '4px 4px 0px rgba(0, 0, 0, 0.15)',
+                        '3d-small': '4px 4px 0px rgba(0, 0, 0, 0.1)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-3d {
+                @apply transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)];
+            }
+            .hover-3d:hover {
+                @apply transform translate-y-[-4px] translate-x-[-4px] shadow-3d-hover;
+            }
+            .card-3d {
+                @apply shadow-3d transition-3d hover-3d;
+            }
+            .btn-3d {
+                @apply shadow-3d-small transition-3d hover-3d active:translate-y-0 active:translate-x-0 active:shadow-none;
+            }
+            .payment-method {
+                @apply border-2 border-gray-200 rounded-lg p-4 cursor-pointer transition-colors;
+            }
+            .payment-method.active {
+                @apply border-primary-dark bg-primary-light bg-opacity-10;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-primary-dark text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="card-3d bg-white p-2 rounded-lg">
+                        <img src="images/logoo.png" class="w-10 h-10 object-contain" alt="PharmExpress Logo">
+                    </div>
+                    <h1 class="text-2xl font-bold">Pharm<span class="text-accent">Express</span></h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="font-medium hover:text-accent transition-colors">Accueil</a>
+                    <a href="produits.html" class="font-medium hover:text-accent transition-colors">Produits</a>
+                    <a href="categorie.html" class="font-medium hover:text-accent transition-colors">Catégories</a>
+                    <a href="aprpos.html" class="font-medium hover:text-accent transition-colors">À propos</a>
+                    <a href="#" class="font-medium hover:text-accent transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="p-2 hover:text-accent transition-colors">
+                            <i class="fas fa-bell text-xl"></i>
+                            <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                        </button>
+                    </div>
+                    <button class="p-2 text-accent transition-colors">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                    </button>
+                    <a href="#" class="btn-3d bg-accent text-white px-4 py-2 rounded-lg font-medium">Connexion</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Checkout Progress -->
+    <div class="bg-white shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center py-6">
+                <div class="flex items-center">
+                    <div class="flex flex-col items-center mr-8">
+                        <div class="w-10 h-10 rounded-full bg-primary-dark text-white flex items-center justify-center font-bold">1</div>
+                        <span class="text-sm mt-2 font-medium text-primary-dark">Panier</span>
+                    </div>
+                    <div class="h-1 w-16 bg-primary-dark"></div>
+                    <div class="flex flex-col items-center mx-8">
+                        <div class="w-10 h-10 rounded-full bg-primary-dark text-white flex items-center justify-center font-bold">2</div>
+                        <span class="text-sm mt-2 font-medium text-primary-dark">Livraison</span>
+                    </div>
+                    <div class="h-1 w-16 bg-primary-dark"></div>
+                    <div class="flex flex-col items-center mx-8">
+                        <div class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-bold">3</div>
+                        <span class="text-sm mt-2 font-medium text-primary-dark">Paiement</span>
+                    </div>
+                    <div class="h-1 w-16 bg-gray-300"></div>
+                    <div class="flex flex-col items-center ml-8">
+                        <div class="w-10 h-10 rounded-full bg-gray-300 text-gray-600 flex items-center justify-center font-bold">4</div>
+                        <span class="text-sm mt-2 font-medium text-gray-500">Confirmation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <section class="py-8">
+        <div class="container mx-auto px-4">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8">Finaliser votre commande</h1>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Payment Form -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                            <h2 class="font-semibold text-gray-900">Moyen de paiement</h2>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                <div class="payment-method active" onclick="selectPaymentMethod(this, 'credit-card')">
+                                    <div class="flex items-center">
+                                        <input type="radio" name="payment-method" id="credit-card" class="h-4 w-4 text-primary-dark focus:ring-primary-dark" checked>
+                                        <label for="credit-card" class="ml-3 block font-medium">Carte bancaire</label>
+                                    </div>
+                                    <div class="mt-3 flex space-x-2">
+                                        <div class="p-1 bg-gray-100 rounded">
+                                            <i class="fab fa-cc-visa text-xl text-gray-700"></i>
+                                        </div>
+                                        <div class="p-1 bg-gray-100 rounded">
+                                            <i class="fab fa-cc-mastercard text-xl text-gray-700"></i>
+                                        </div>
+                                        <div class="p-1 bg-gray-100 rounded">
+                                            <i class="fab fa-cc-amex text-xl text-gray-700"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="payment-method" onclick="selectPaymentMethod(this, 'paypal')">
+                                    <div class="flex items-center">
+                                        <input type="radio" name="payment-method" id="paypal" class="h-4 w-4 text-primary-dark focus:ring-primary-dark">
+                                        <label for="paypal" class="ml-3 block font-medium">PayPal</label>
+                                    </div>
+                                    <div class="mt-3">
+                                        <div class="p-1 bg-gray-100 rounded inline-block">
+                                            <i class="fab fa-cc-paypal text-xl text-gray-700"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Credit Card Form (shown by default) -->
+                            <div id="credit-card-form">
+                                <div class="space-y-4">
+                                    <div>
+                                        <label for="card-number" class="block text-sm font-medium text-gray-700 mb-1">Numéro de carte</label>
+                                        <div class="relative">
+                                            <input type="text" id="card-number" name="card-number" placeholder="1234 5678 9012 3456" 
+                                                   class="block w-full border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary">
+                                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                <i class="far fa-credit-card text-gray-400"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label for="expiration-date" class="block text-sm font-medium text-gray-700 mb-1">Date d'expiration</label>
+                                            <input type="text" id="expiration-date" name="expiration-date" placeholder="MM/AA" 
+                                                   class="block w-full border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary">
+                                        </div>
+                                        <div>
+                                            <label for="cvv" class="block text-sm font-medium text-gray-700 mb-1">Cryptogramme</label>
+                                            <div class="relative">
+                                                <input type="text" id="cvv" name="cvv" placeholder="123" 
+                                                       class="block w-full border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary">
+                                                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                                                    <i class="fas fa-lock text-gray-400"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <label for="card-name" class="block text-sm font-medium text-gray-700 mb-1">Nom sur la carte</label>
+                                        <input type="text" id="card-name" name="card-name" placeholder="Jean DUPONT" 
+                                               class="block w-full border-gray-300 rounded-md shadow-sm focus:border-primary focus:ring-primary">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- PayPal Form (hidden by default) -->
+                            <div id="paypal-form" class="hidden text-center py-8">
+                                <p class="mb-4">Vous serez redirigé vers PayPal pour finaliser votre paiement</p>
+                                <button class="btn-3d bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-6 py-3 rounded-lg font-medium inline-flex items-center">
+                                    <i class="fab fa-paypal mr-2 text-xl"></i> Payer avec PayPal
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Delivery Address -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200">
+                            <h2 class="font-semibold text-gray-900">Adresse de livraison</h2>
+                        </div>
+                        
+                        <div class="p-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-home text-2xl text-primary-dark"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="font-medium text-gray-900">Domicile</h3>
+                                    <p class="text-gray-600">Jean Dupont<br>12 Rue de la République<br>75001 Paris<br>France</p>
+                                    <button class="mt-2 text-sm text-primary-dark hover:text-primary font-medium">
+                                        <i class="fas fa-edit mr-1"></i> Modifier
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 border-t border-gray-200 pt-6">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-truck text-xl text-primary-dark"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <h3 class="font-medium text-gray-900">Livraison standard</h3>
+                                        <p class="text-gray-600">Livraison en 24-48h<br>Colis suivi avec numéro de suivi</p>
+                                        <p class="mt-1 font-medium text-primary-dark">Gratuite</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Order Summary -->
+                <div>
+                    <div class="card-3d bg-white rounded-xl p-6 sticky top-4">
+                        <h2 class="text-xl font-bold text-gray-900 mb-6">Récapitulatif de commande</h2>
+                        
+                        <div class="space-y-4 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Sous-total (3 articles)</span>
+                                <span class="font-medium">16,55 €</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Livraison</span>
+                                <span class="font-medium">Gratuite</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Réduction</span>
+                                <span class="text-green-600 font-medium">-1,10 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-gray-200 pt-4 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-lg font-bold">Total TTC</span>
+                                <span class="text-lg font-bold text-primary-dark">15,45 €</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">Dont 0,80 € d'éco-participation</p>
+                        </div>
+                        
+                        <!-- Order Items -->
+                        <div class="border-t border-gray-200 pt-4 mb-6">
+                            <h3 class="font-medium mb-3">Vos articles</h3>
+                            <div class="space-y-3">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <img src="https://via.placeholder.com/60x60?text=Doliprane" alt="Doliprane" class="w-12 h-12 rounded-md object-contain">
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="text-sm font-medium">Doliprane 1000mg</h4>
+                                        <p class="text-sm text-gray-500">2 × 4,95 €</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <img src="https://via.placeholder.com/60x60?text=Advil" alt="Advil" class="w-12 h-12 rounded-md object-contain">
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="text-sm font-medium">Advil 200mg</h4>
+                                        <p class="text-sm text-gray-500">1 × 5,40 €</p>
+                                    </div>
+                                </div>
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <img src="https://via.placeholder.com/60x60?text=Strepsils" alt="Strepsils" class="w-12 h-12 rounded-md object-contain">
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="text-sm font-medium">Strepsils miel citron</h4>
+                                        <p class="text-sm text-gray-500">1 × 6,20 €</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms and Conditions -->
+                        <div class="border-t border-gray-200 pt-4 mb-6">
+                            <div class="flex items-start">
+                                <div class="flex items-center h-5">
+                                    <input id="terms" name="terms" type="checkbox" class="focus:ring-primary h-4 w-4 text-primary-dark border-gray-300 rounded">
+                                </div>
+                                <div class="ml-3">
+                                    <label for="terms" class="text-sm text-gray-700">
+                                        J'accepte les <a href="#" class="text-primary-dark hover:text-primary">conditions générales de vente</a> et la <a href="#" class="text-primary-dark hover:text-primary">politique de confidentialité</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-3d w-full bg-accent hover:bg-primary-dark text-white py-3 px-4 rounded-lg font-medium text-lg mb-4">
+                            Payer maintenant
+                        </button>
+                        
+                        <div class="text-center text-sm text-gray-500">
+                            <p class="flex items-center justify-center">
+                                <i class="fas fa-lock mr-2"></i>
+                                <span>Paiement 100% sécurisé</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">À propos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Qui sommes-nous</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Notre équipe</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Nos pharmacies</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Recrutement</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Livraison</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Click & Collect</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Ordonnance en ligne</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Conseil pharmaceutique</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Help Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Aide</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Nous contacter</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Suivi de commande</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Retours et remboursements</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Légal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Conditions générales</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Politique de confidentialité</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Mentions légales</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Suivez-nous</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-primary-light"></i>
+                            <span>01 23 45 67 89</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary-light"></i>
+                            <span>contact@pharmexpress.fr</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary text-center text-primary-light text-sm">
+                &copy; 2025 PharmExpress. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Sélection du mode de paiement
+        function selectPaymentMethod(element, method) {
+            // Retirer la classe active de tous les éléments
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Ajouter la classe active à l'élément cliqué
+            element.classList.add('active');
+            
+            // Afficher le formulaire correspondant
+            if (method === 'credit-card') {
+                document.getElementById('credit-card-form').classList.remove('hidden');
+                document.getElementById('paypal-form').classList.add('hidden');
+            } else if (method === 'paypal') {
+                document.getElementById('credit-card-form').classList.add('hidden');
+                document.getElementById('paypal-form').classList.remove('hidden');
+            }
+        }
+        
+        // Formatage du numéro de carte
+        document.getElementById('card-number').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\s+/g, ''); // Supprimer les espaces existants
+            if (value.length > 0) {
+                value = value.match(new RegExp('.{1,4}', 'g')).join(' '); // Ajouter un espace tous les 4 caractères
+            }
+            e.target.value = value;
+        });
+        
+        // Formatage de la date d'expiration
+        document.getElementById('expiration-date').addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D+/g, ''); // Supprimer tout ce qui n'est pas un chiffre
+            if (value.length > 2) {
+                value = value.substring(0, 2) + '/' + value.substring(2, 4); // Ajouter un / après 2 chiffres
+            }
+            e.target.value = value;
+        });
+        
+        // Validation du formulaire avant soumission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            if (!document.getElementById('terms').checked) {
+                e.preventDefault();
+                alert('Veuillez accepter les conditions générales de vente');
+            }
+        });
+    </script>
+</body>
+</html>

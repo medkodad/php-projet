@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos - PharmExpress</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#A9D6E5',
+                            DEFAULT: '#2C7DA0',
+                            dark: '#012A4A'
+                        },
+                        secondary: '#61A5C2',
+                        accent: '#468FAF',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        '3d': '8px 8px 0px rgba(0, 0, 0, 0.15)',
+                        '3d-hover': '4px 4px 0px rgba(0, 0, 0, 0.15)',
+                        '3d-small': '4px 4px 0px rgba(0, 0, 0, 0.1)',
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .transition-3d {
+                @apply transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)];
+            }
+            .hover-3d:hover {
+                @apply transform translate-y-[-4px] translate-x-[-4px] shadow-3d-hover;
+            }
+            .card-3d {
+                @apply shadow-3d transition-3d hover-3d;
+            }
+            .btn-3d {
+                @apply shadow-3d-small transition-3d hover-3d active:translate-y-0 active:translate-x-0 active:shadow-none;
+            }
+            .team-card:hover .team-img {
+                @apply transform scale-110;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Header -->
+    <header class="bg-primary-dark text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <nav class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="card-3d bg-white p-2 rounded-lg">
+                        <img src="images/logoo.png" class="w-10 h-10 object-contain" alt="PharmExpress Logo">
+                    </div>
+                    <h1 class="text-2xl font-bold">Pharm<span class="text-accent">Express</span></h1>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="index.html" class="font-medium hover:text-accent transition-colors">Accueil</a>
+                    <a href="produits.html" class="font-medium hover:text-accent transition-colors">Produits</a>
+                    <a href="categorie.html" class="font-medium hover:text-accent transition-colors">Catégories</a>
+                    <a href="aprpos.html" class="font-medium text-accent transition-colors">À propos</a>
+                    <a href="#" class="font-medium hover:text-accent transition-colors">Contact</a>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="p-2 hover:text-accent transition-colors">
+                            <i class="fas fa-bell text-xl"></i>
+                            <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">2</span>
+                        </button>
+                    </div>
+                    <button class="p-2 hover:text-accent transition-colors">
+                        <i class="fas fa-shopping-cart text-xl"></i>
+                    </button>
+                    <a href="#" class="btn-3d bg-accent text-white px-4 py-2 rounded-lg font-medium">Connexion</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-r from-primary to-primary-dark text-white py-20">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80')] bg-cover bg-center"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Votre santé, notre engagement</h1>
+            <p class="text-xl text-primary-light max-w-3xl mx-auto">
+                Découvrez l'histoire et les valeurs de PharmExpress, votre pharmacie en ligne de confiance
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Story -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Notre histoire" class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">Notre histoire</h2>
+                    <div class="prose text-gray-700">
+                        <p>
+                            Fondée en 2015 par deux pharmaciens passionnés, PharmExpress est née d'une simple idée : rendre les produits de santé accessibles à tous, rapidement et en toute confiance.
+                        </p>
+                        <p class="mt-4">
+                            Ce qui a commencé comme une petite pharmacie en ligne est rapidement devenu une référence dans le domaine de la santé digitale, avec plus de 500 000 clients satisfaits à travers la France.
+                        </p>
+                        <p class="mt-4">
+                            Aujourd'hui, PharmExpress c'est une équipe de 50 professionnels de santé dévoués, un catalogue de plus de 10 000 produits soigneusement sélectionnés, et un engagement quotidien pour votre bien-être.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos valeurs</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Les principes qui guident chacune de nos actions</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Value 1 -->
+                <div class="card-3d bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-3">Sécurité</h3>
+                    <p class="text-gray-700">
+                        Tous nos produits sont sourcés auprès de fournisseurs agréés et stockés dans des conditions optimales. Votre sécurité est notre priorité absolue.
+                    </p>
+                </div>
+                
+                <!-- Value 2 -->
+                <div class="card-3d bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-3">Expertise</h3>
+                    <p class="text-gray-700">
+                        Notre équipe de pharmaciens diplômés est disponible 7j/7 pour vous conseiller et répondre à toutes vos questions santé.
+                    </p>
+                </div>
+                
+                <!-- Value 3 -->
+                <div class="card-3d bg-gray-50 rounded-xl p-8 text-center">
+                    <div class="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-primary-dark mb-3">Engagement</h3>
+                    <p class="text-gray-700">
+                        Nous nous engageons à rendre les soins accessibles à tous, avec des prix justes et une livraison express partout en France.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team -->
+    <section class="py-16 bg-primary-light bg-opacity-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Notre équipe</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Des professionnels de santé à votre écoute</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Team Member 1 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden team-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dr. Sophie Martin" class="w-full h-full object-cover team-img transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-gray-900">Dr. Sophie Martin</h3>
+                        <p class="text-accent font-medium">Pharmacienne diplômée</p>
+                        <p class="text-gray-600 mt-2">15 ans d'expérience en officine</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden team-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Dr. Jean Lefèvre" class="w-full h-full object-cover team-img transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-gray-900">Dr. Jean Lefèvre</h3>
+                        <p class="text-accent font-medium">Co-fondateur</p>
+                        <p class="text-gray-600 mt-2">Expert en pharmacologie</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden team-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Marie Dubois" class="w-full h-full object-cover team-img transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-gray-900">Marie Dubois</h3>
+                        <p class="text-accent font-medium">Responsable clientèle</p>
+                        <p class="text-gray-600 mt-2">À votre service depuis 2017</p>
+                    </div>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="card-3d bg-white rounded-xl overflow-hidden team-card">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Thomas Moreau" class="w-full h-full object-cover team-img transition-transform duration-500">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-gray-900">Thomas Moreau</h3>
+                        <p class="text-accent font-medium">Responsable logistique</p>
+                        <p class="text-gray-600 mt-2">Garant de votre livraison express</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ils nous font confiance</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ce que disent nos clients satisfaits</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-3d bg-gray-50 rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">12/05/2024</span>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">
+                        "Service impeccable ! Ma commande est arrivée rapidement et les conseils du pharmacien étaient parfaitement adaptés à mes besoins."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center text-primary-dark font-bold mr-4">AM</div>
+                        <div>
+                            <h4 class="font-medium">Amélie Durand</h4>
+                            <p class="text-sm text-gray-500">Lyon</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="card-3d bg-gray-50 rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">28/04/2024</span>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">
+                        "Enfin une pharmacie en ligne sérieuse avec de vrais professionnels de santé. Les produits sont de qualité et bien emballés."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center text-primary-dark font-bold mr-4">PL</div>
+                        <div>
+                            <h4 class="font-medium">Pierre Lambert</h4>
+                            <p class="text-sm text-gray-500">Paris</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="card-3d bg-gray-50 rounded-xl p-8">
+                    <div class="flex items-center mb-4">
+                        <div class="flex items-center text-yellow-400 mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                        <span class="text-sm text-gray-500">15/04/2024</span>
+                    </div>
+                    <p class="text-gray-700 italic mb-6">
+                        "J'utilise PharmExpress depuis 2 ans et je n'ai jamais été déçue. Livraison rapide et conseils avisés. Je recommande !"
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center text-primary-dark font-bold mr-4">SM</div>
+                        <div>
+                            <h4 class="font-medium">Sophie Martin</h4>
+                            <p class="text-sm text-gray-500">Marseille</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-primary-dark text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Prêt à prendre soin de vous ?</h2>
+            <p class="text-xl text-primary-light max-w-2xl mx-auto mb-8">
+                Découvrez notre large sélection de produits de santé et bénéficiez de conseils personnalisés.
+            </p>
+            <a href="#" class="btn-3d inline-block bg-accent hover:bg-white text-white hover:text-primary-dark px-8 py-3 rounded-lg font-medium text-lg">
+                Voir nos produits
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary-dark text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+                <!-- About Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">À propos</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Qui sommes-nous</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Notre équipe</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Nos pharmacies</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Recrutement</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Services Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Livraison</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Click & Collect</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Ordonnance en ligne</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Conseil pharmaceutique</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Help Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Aide</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">FAQ</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Nous contacter</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Suivi de commande</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Retours et remboursements</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Légal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Conditions générales</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Politique de confidentialité</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Mentions légales</a></li>
+                        <li><a href="#" class="hover:text-primary-light transition-colors">Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Column -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-primary-light">Suivez-nous</h3>
+                    <div class="flex space-x-4 mb-6">
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="flex items-center">
+                            <i class="fas fa-phone-alt mr-2 text-primary-light"></i>
+                            <span>01 23 45 67 89</span>
+                        </p>
+                        <p class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary-light"></i>
+                            <span>contact@pharmexpress.fr</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-8 border-t border-primary text-center text-primary-light text-sm">
+                &copy; 2025 PharmExpress. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
